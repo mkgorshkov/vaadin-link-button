@@ -13,6 +13,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -32,8 +33,18 @@ public class MyUI extends UI {
 
         String link = "http://google.ca";
 
+        Button regularButton = new Button("Test Link");
+        regularButton.setIcon(FontAwesome.SEND);
+        regularButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                getUI().getPage().open("http://google.com", "_blank");
+            }
+        });
+
         ButtonLink buttonLink = new ButtonLink("Test Link", new ExternalResource(link), "100px", "center", FontAwesome.SEND.getHtml());
 
+        layout.addComponent(regularButton);
         layout.addComponent(buttonLink);
 
         layout.setMargin(true);
